@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bilder</title>
+<title>Büchern</title>
 <style>
   :root {
-    --bg:        #eef2f7;
+    --bg:        #f3eefa;
     --card:      #ffffff;
-    --ink:       #14213d;
-    --muted:     #5b6780;
-    --line:      #d5dce8;
-    --accent:    #2a6fdb;
-    --thumb-bg:  #d5dce8;  /* Platzhalter, solange das Bild lädt */
+    --ink:       #2e1a47;
+    --muted:     #7a6a94;
+    --line:      #ddd0ee;
+    --accent:    #7c3aed;
+    --thumb-bg:  #ddd0ee;
   }
 
   body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
@@ -64,7 +64,7 @@
 
   document.getElementById("app").innerHTML = `
     <h1>Bilder</h1>
-    <p>Klick auf eine Vorschau, um ans Bild zu kommen.</p>
+    <p>Klick auf ein Bild, um zum Buch zu kommen.</p>
     <div class="grid">` +
     bilder.map(b => `
       <a class="card" href="${b.url}" target="_blank" rel="noopener">
