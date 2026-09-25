@@ -66,11 +66,18 @@
       url: "https://www.cornelsen.de/produkte/natur-und-technikjnj-physik-neubearbeitung-vjijijschulbuch-band-8-wahlpflichtfaechergruppe-i-9783060146734" },
   ];
 
+  // "Test" bleibt immer an erster Stelle, der Rest wird alphabetisch (nach Titel) sortiert
+  const sortiert = bilder.slice().sort((a, b) => {
+    if (a.titel === "Test") return -1;
+    if (b.titel === "Test") return 1;
+    return a.titel.localeCompare(b.titel, "de");
+  });
+
   document.getElementById("app").innerHTML = `
     <h1>Bücher</h1>
     <p>Klick auf ein Bild, um zum Buch zu kommen.</p>
     <div class="grid">` +
-    bilder.map(b => `
+    sortiert.map(b => `
       <a class="card" href="${b.url}" target="_blank" rel="noopener">
         <img class="thumb" src="${b.vorschau}" alt="${b.titel}" loading="lazy">
         <div class="txt"><h2>${b.titel}</h2><p>${b.text}</p></div>
