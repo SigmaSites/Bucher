@@ -15,7 +15,8 @@
     --thumb-bg:  #ddd0ee;
 
     /*Bücher*/
-    
+    --Chemie-Vorschau: https://res.cloudinary.com/pim-red/image/upload/q_auto,f_auto,w_230/v1639480386/ccbuchner/titles/covers/c05508.jpg;
+    --Chemie-Url: ;
   }
 
   body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
@@ -37,7 +38,7 @@
   // Pro Eintrag: vorschau = kleines Vorschaubild, url = Seite, die beim Klick aufgeht
   const bilder = [
     { titel: "Chemie", text: "Chemie",
-      vorschau: "https://res.cloudinary.com/pim-red/image/upload/q_auto,f_auto,w_230/v1639480386/ccbuchner/titles/covers/c05508.jpg",
+      vorschau: var(--Chemie-Vorschau),
       url: "https://www.ccbuchner.de/produkt/chemie-realschule-bayern-8-i-ausgabe-ab-2020-6014" },
     
     { titel: "Deutsch", text: "Deutschbuch",
