@@ -13,6 +13,9 @@
     --line:      #ddd0ee;
     --accent:    #7c3aed;
     --thumb-bg:  #ddd0ee;
+
+    /*Bücher*/
+    
   }
 
   body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
@@ -75,7 +78,7 @@
 
   document.getElementById("app").innerHTML = `
     <h1>Bücher</h1>
-    <p>Klick auf ein Bild, um zum Buch zu kommen.</p>
+    <p>Klick auf die Kacheln, um zum Buch zu kommen.</p>
     <div class="grid">` +
     sortiert.map(b => `
       <a class="card" href="${b.url}" target="_blank" rel="noopener">
