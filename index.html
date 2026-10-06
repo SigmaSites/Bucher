@@ -41,9 +41,9 @@
       vorschau: "https://static.cornelsen.de/media/9783060673476/9783060673476_COVER_STD_B260_X2.png",
       url: "https://www.cornelsen.de/produkte/deutschbuch-schulbuch-8-jahrgangsstufe-9783060673476" },
     
-    { titel: "Englisch", text: "Red Line",
+    /*{ titel: "Englisch", text: "Red Line",
       vorschau: "https://assets.klett.de/assets/70982043/Cover_546079_2469_800.jpg",
-      url: "https://www.klett.de/produkt/isbn/978-3-12-546079-9" },
+      url: "https://www.klett.de/produkt/isbn/978-3-12-546079-9" },*/
     
     { titel: "Geographie", text: "Unsere Erde",
       vorschau: "https://static.cornelsen.de/media/9783637019065/9783637019065_COVER_STD_B260_X2.png",
@@ -61,13 +61,13 @@
       vorschau: "https://static.cornelsen.de/media/9783060146734/9783060146734_COVER_STD_B260_X2.png",
       url: "https://www.cornelsen.de/produkte/natur-und-technik-physik-neubearbeitung-schulbuch-band-8-wahlpflichtfaechergruppe-i-9783060146734" },
 
-    { titel: "Test", text: "N/A",
+    /*{ titel: "Test", text: "N/A",
       vorschau: "https://static.cornelsen.de/media/9783060146734njn/hjh_COVER_STD_B260_X2.png",
-      url: "https://www.cornelsen.de/produkte/natur-und-technikjnj-physik-neubearbeitung-vjijijschulbuch-band-8-wahlpflichtfaechergruppe-i-9783060146734" },
+      url: "https://www.cornelsen.de/produkte/natur-und-technikjnj-physik-neubearbeitung-vjijijschulbuch-band-8-wahlpflichtfaechergruppe-i-9783060146734" },*/
   ];
 
   // "Test" bleibt immer an erster Stelle, der Rest wird alphabetisch (nach Titel) sortiert
-  const sortiert = bilder.slice().sort((a, b) => {
+  /*const sortiert = bilder.slice().sort((a, b) => {
     if (a.titel === "Test") return -1;
     if (b.titel === "Test") return 1;
     return a.titel.localeCompare(b.titel, "de");
