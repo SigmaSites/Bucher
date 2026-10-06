@@ -67,7 +67,7 @@
   ];
 
   // "Test" bleibt immer an erster Stelle, der Rest wird alphabetisch (nach Titel) sortiert
-  /*const sortiert = bilder.slice().sort((a, b) => {
+  const sortiert = bilder.slice().sort((a, b) => {
     if (a.titel === "Test") return -1;
     if (b.titel === "Test") return 1;
     return a.titel.localeCompare(b.titel, "de");
