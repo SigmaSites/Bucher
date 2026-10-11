@@ -114,8 +114,10 @@
         <div class="txt"><h2>${b.titel}</h2><p>${b.text}</p></div>
         <div class="links">
           ${b.titel === "Test"
-            ? button(b.url1, einstellungen.label1, "") + button(b.url2, einstellungen.label2, "alt")
-            : button(b.turl1, einstellungen.label3, "") + button(b.turl2, einstellungen.label4, "alt")}
+            //Test
+            ? button(b.turl1, einstellungen.label3, "") + button(b.turl2, einstellungen.label4, "alt")
+            //Casual
+            : button(b.url1, einstellungen.label1, "") + button(b.url2, einstellungen.label2, "alt")}
         </div>
       </div>`).join("") + `</div>`;
 </script>
