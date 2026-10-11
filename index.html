@@ -19,51 +19,72 @@
   main { max-width: 960px; margin: 0 auto; padding: 32px 20px 64px; }
   h1 { font-size: 2.2rem; margin: 0 0 8px; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 24px; }
-  .card { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; color: inherit; text-decoration: none; }
+  .card { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; color: inherit; }
   .card:hover { border-color: var(--accent); }
   .thumb { display: block; width: 100%; height: 170px; object-fit: cover; background: var(--thumb-bg); }
-  .txt { padding: 16px 18px 20px; }
+  .txt { padding: 16px 18px 12px; flex: 1; }
   .txt h2 { margin: 0 0 4px; font-size: 1.2rem; }
   .txt p { margin: 0; color: var(--muted); }
+  .links { display: flex; gap: 8px; padding: 0 18px 18px; }
+  .btn { flex: 1; text-align: center; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--accent); background: var(--accent); color: #fff; text-decoration: none; font-size: 0.95rem; }
+  .btn:hover { filter: brightness(1.1); }
+  .btn.alt { background: transparent; color: var(--accent); }
+  .btn.alt:hover { background: var(--accent); color: #fff; filter: none; }
+  .btn.off { opacity: 0.4; pointer-events: none; }
 </style>
 </head>
 <body>
 <main id="app"></main>
 
 <script>
-  // Pro Eintrag: vorschau = kleines Vorschaubild, url = Seite, die beim Klick aufgeht
+  // Hier einmal festlegen, wie die beiden Buttons bei ALLEN Kacheln heißen
+  const einstellungen = {
+    label1: "Kaufseite",
+    label2: "Buch Modus",
+  };
+
+  // Pro Eintrag: vorschau = kleines Vorschaubild, url1 / url2 = Seiten, die man unten auswählen kann
+  // (url2 leer lassen = Button wird ausgegraut)
   const bilder = [
     { titel: "Chemie", text: "Chemie",
       vorschau: "https://res.cloudinary.com/pim-red/image/upload/q_auto,f_auto,w_230/v1639480386/ccbuchner/titles/covers/c05508.jpg",
-      url: "https://www.ccbuchner.de/produkt/chemie-realschule-bayern-8-i-ausgabe-ab-2020-6014" },
-    
+      url1: "https://www.ccbuchner.de/produkt/chemie-realschule-bayern-8-i-ausgabe-ab-2020-6014",
+      url2: "" },
+
     { titel: "Deutsch", text: "Deutschbuch",
       vorschau: "https://static.cornelsen.de/media/9783060673476/9783060673476_COVER_STD_B260_X2.png",
-      url: "https://www.cornelsen.de/produkte/deutschbuch-schulbuch-8-jahrgangsstufe-9783060673476" },
-    
+      url1: "https://www.cornelsen.de/produkte/deutschbuch-schulbuch-8-jahrgangsstufe-9783060673476",
+      url2: "" },
+
     /*{ titel: "Englisch", text: "Red Line",
       vorschau: "https://assets.klett.de/assets/70982043/Cover_546079_2469_800.jpg",
-      url: "https://www.klett.de/produkt/isbn/978-3-12-546079-9" },*/
-    
+      url1: "https://www.klett.de/produkt/isbn/978-3-12-546079-9",
+      url2: "" },*/
+
     { titel: "Geographie", text: "Unsere Erde",
       vorschau: "https://static.cornelsen.de/media/9783637019065/9783637019065_COVER_STD_B260_X2.png",
-      url: "https://www.cornelsen.de/produkte/unsere-erde-oldenbourg-schulbuch-8-jahrgangsstufe-9783637019065" },
-    
+      url1: "https://www.cornelsen.de/produkte/unsere-erde-oldenbourg-schulbuch-8-jahrgangsstufe-9783637019065",
+      url2: "" },
+
     { titel: "Geschichte", text: "Horizonte",
       vorschau: "https://c.wgr.de/i/artikel/288x288-fit/978-3-14-112130-8.jpg",
-      url: "https://www.westermann.de/artikel/978-3-14-112130-8/Horizonte-Geschichte-Ausgabe-2018-fuer-Realschulen-in-Bayern-Schulbuch-8" },
-    
+      url1: "https://www.westermann.de/artikel/978-3-14-112130-8/Horizonte-Geschichte-Ausgabe-2018-fuer-Realschulen-in-Bayern-Schulbuch-8",
+      url2: "" },
+
     { titel: "Mathe", text: "Pytagoras",
       vorschau: "https://static.cornelsen.de/media/9783060401239/9783060401239_COVER_STD_B260_X2.png",
-      url: "https://www.cornelsen.de/produkte/pythagoras-schulbuch-8-jahrgangsstufe-wpf-i-9783060401239" },
-    
+      url1: "https://www.cornelsen.de/produkte/pythagoras-schulbuch-8-jahrgangsstufe-wpf-i-9783060401239",
+      url2: "" },
+
     { titel: "Physik", text: "Natur und Technik",
       vorschau: "https://static.cornelsen.de/media/9783060146734/9783060146734_COVER_STD_B260_X2.png",
-      url: "https://www.cornelsen.de/produkte/natur-und-technik-physik-neubearbeitung-schulbuch-band-8-wahlpflichtfaechergruppe-i-9783060146734" },
+      url1: "https://www.cornelsen.de/produkte/natur-und-technik-physik-neubearbeitung-schulbuch-band-8-wahlpflichtfaechergruppe-i-9783060146734",
+      url2: "" },
 
     /*{ titel: "Test", text: "N/A",
       vorschau: "https://static.cornelsen.de/media/9783060146734njn/hjh_COVER_STD_B260_X2.png",
-      url: "https://www.cornelsen.de/produkte/natur-und-technikjnj-physik-neubearbeitung-vjijijschulbuch-band-8-wahlpflichtfaechergruppe-i-9783060146734" },*/
+      url1: "https://www.cornelsen.de/produkte/natur-und-technikjnj-physik-neubearbeitung-vjijijschulbuch-band-8-wahlpflichtfaechergruppe-i-9783060146734",
+      url2: "" },*/
   ];
 
   // "Test" bleibt immer an erster Stelle, der Rest wird alphabetisch (nach Titel) sortiert
@@ -73,15 +94,25 @@
     return a.titel.localeCompare(b.titel, "de");
   });
 
+  function button(url, label, extra) {
+    return url
+      ? `<a class="btn ${extra}" href="${url}" target="_blank" rel="noopener">${label}</a>`
+      : `<span class="btn ${extra} off">${label}</span>`;
+  }
+
   document.getElementById("app").innerHTML = `
     <h1>Bücher</h1>
-    <p>Klick auf die Kacheln, um zum Buch zu kommen.</p>
+    <p>Wähle unten bei der Kachel, welche URL du öffnen willst.</p>
     <div class="grid">` +
     sortiert.map(b => `
-      <a class="card" href="${b.url}" target="_blank" rel="noopener">
+      <div class="card">
         <img class="thumb" src="${b.vorschau}" alt="${b.titel}" loading="lazy">
         <div class="txt"><h2>${b.titel}</h2><p>${b.text}</p></div>
-      </a>`).join("") + `</div>`;
+        <div class="links">
+          ${button(b.url1, einstellungen.label1, "")}
+          ${button(b.url2, einstellungen.label2, "alt")}
+        </div>
+      </div>`).join("") + `</div>`;
 </script>
 </body>
 </html>
