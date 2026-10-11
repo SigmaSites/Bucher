@@ -37,7 +37,8 @@
 <main id="app"></main>
 
 <script>
-  // Hier einmal festlegen, wie die beiden Buttons bei ALLEN Kacheln heißen
+  // Beschriftung der Buttons:
+  // label1 / label2 = alle normalen Kacheln, label3 / label4 = nur die Test-Kachel
   const einstellungen = {
     label1: "Kaufseite",
     label2: "Buch Modus",
@@ -47,6 +48,7 @@
 
   // Pro Eintrag: vorschau = kleines Vorschaubild, url1 / url2 = Seiten, die man unten auswählen kann
   // (url2 leer lassen = Button wird ausgegraut)
+  // Die Test-Kachel verwendet stattdessen turl1 / turl2
   const bilder = [
     { titel: "Chemie", text: "Chemie",
       vorschau: "https://res.cloudinary.com/pim-red/image/upload/q_auto,f_auto,w_230/v1639480386/ccbuchner/titles/covers/c05508.jpg",
@@ -111,8 +113,9 @@
         <img class="thumb" src="${b.vorschau}" alt="${b.titel}" loading="lazy">
         <div class="txt"><h2>${b.titel}</h2><p>${b.text}</p></div>
         <div class="links">
-          ${button(b.titel === "Test" ? b.turl1 : b.url1, einstellungen.label1, "")}
-          ${button(b.titel === "Test" ? b.turl2 : b.url2, einstellungen.label2, "alt")}
+          ${b.titel === "Test"
+            ? button(b.url1, einstellungen.label1, "") + button(b.url2, einstellungen.label2, "alt")
+            : button(b.turl1, einstellungen.label3, "") + button(b.turl2, einstellungen.label4, "alt")}
         </div>
       </div>`).join("") + `</div>`;
 </script>
