@@ -111,8 +111,8 @@
         <img class="thumb" src="${b.vorschau}" alt="${b.titel}" loading="lazy">
         <div class="txt"><h2>${b.titel}</h2><p>${b.text}</p></div>
         <div class="links">
-          ${button(b.url1, einstellungen.label1, "")}
-          ${button(b.url2, einstellungen.label2, "alt")}
+          ${button(b.titel === "Test" ? b.turl1 : b.url1, einstellungen.label1, "")}
+          ${button(b.titel === "Test" ? b.turl2 : b.url2, einstellungen.label2, "alt")}
         </div>
       </div>`).join("") + `</div>`;
 </script>
